@@ -1,0 +1,1001 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   VELOZITY
+   BLUE PROFESSIONAL UI
+   HIGH CONTRAST / READABLE TEXT
+   ========================================================= */
+
+@layer base {
+  :root,
+  html.light {
+    /* =====================================================
+       BLUE PAGE BACKGROUND
+       ===================================================== */
+    --bg-page:
+      radial-gradient(
+        circle at 10% 10%,
+        rgba(59, 130, 246, 0.12),
+        transparent 35%
+      ),
+      linear-gradient(
+        135deg,
+        #dbeafe 0%,
+        #c7ddf8 35%,
+        #dceafe 65%,
+        #eef6ff 100%
+      );
+
+    /* =====================================================
+       TEXT COLORS
+       ===================================================== */
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-body: #334155;
+    --text-muted: #475569;
+    --text-light: #64748b;
+
+    /* =====================================================
+       BLUE COLORS
+       ===================================================== */
+    --blue-primary: #2563eb;
+    --blue-dark: #1d4ed8;
+    --blue-light: #60a5fa;
+    --blue-soft: #dbeafe;
+    --blue-border: #93c5fd;
+
+    /* =====================================================
+       UI
+       ===================================================== */
+    --border-subtle: rgba(148, 163, 184, 0.45);
+    --border-strong: rgba(59, 130, 246, 0.35);
+
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-elevated-bg: rgba(255, 255, 255, 0.97);
+
+    --sidebar-bg: rgba(239, 246, 255, 0.94);
+
+    --input-bg: rgba(255, 255, 255, 0.96);
+
+    --shadow-card:
+      0 12px 30px rgba(30, 64, 175, 0.10);
+
+    --shadow-hover:
+      0 18px 40px rgba(30, 64, 175, 0.16);
+  }
+
+  /* =======================================================
+     DARK THEME
+     ======================================================= */
+
+  html.dark {
+    --bg-page:
+      radial-gradient(
+        circle at 15% 15%,
+        rgba(37, 99, 235, 0.18),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 85% 25%,
+        rgba(59, 130, 246, 0.14),
+        transparent 45%
+      ),
+      linear-gradient(
+        145deg,
+        #07111f 0%,
+        #0f1d32 50%,
+        #081525 100%
+      );
+
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+
+    --blue-primary: #345174;
+    --blue-dark: #094fc2;
+    --blue-light: #93c5fd;
+    --blue-soft: rgba(59, 130, 246, 0.15);
+    --blue-border: rgba(96, 165, 250, 0.35);
+
+    --border-subtle: rgba(148, 163, 184, 0.20);
+    --border-strong: rgba(96, 165, 250, 0.30);
+
+    --card-bg: rgba(15, 29, 50, 0.82);
+    --card-elevated-bg: rgba(20, 38, 65, 0.92);
+
+    --sidebar-bg: rgba(7, 17, 31, 0.92);
+
+    --input-bg: rgba(15, 29, 50, 0.85);
+
+    --shadow-card:
+      0 12px 35px rgba(0, 0, 0, 0.30);
+
+    --shadow-hover:
+      0 18px 45px rgba(0, 0, 0, 0.40);
+  }
+
+  /* =======================================================
+     BODY
+     ======================================================= */
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+
+    font-family:
+      "Plus Jakarta Sans",
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    background: var(--bg-page);
+    background-attachment: fixed;
+
+    color: var(--text-primary);
+
+    min-height: 100vh;
+
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* =======================================================
+     HEADINGS
+     ======================================================= */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  /* =======================================================
+     NORMAL TEXT
+     ======================================================= */
+
+  p {
+    color: var(--text-body);
+  }
+
+  label {
+    color: var(--text-secondary);
+  }
+
+  small {
+    color: var(--text-muted);
+  }
+
+  /* =======================================================
+     CODE
+     ======================================================= */
+
+  code,
+  pre {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  /* =======================================================
+     SELECTION
+     ======================================================= */
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.25);
+    color: var(--text-primary);
+  }
+}
+
+/* =========================================================
+   GLOBAL READABILITY FIX
+   ========================================================= */
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #0f172a !important;
+}
+
+.light p {
+  color: #334155;
+}
+
+.light span:not(.text-white),
+.light div {
+  /*
+    Do not force all divs to have a color.
+    Components can override this.
+  */
+}
+
+/* =========================================================
+   COMMON TAILWIND LIGHT TEXT COLORS
+   ========================================================= */
+
+.light .text-slate-50 {
+  color: #0f172a !important;
+}
+
+.light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+.light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+.light .text-slate-600 {
+  color: #334155 !important;
+}
+
+.light .text-slate-700 {
+  color: #1e293b !important;
+}
+
+.light .text-gray-50 {
+  color: #0f172a !important;
+}
+
+.light .text-gray-100 {
+  color: #0f172a !important;
+}
+
+.light .text-gray-200 {
+  color: #1e293b !important;
+}
+
+.light .text-gray-300 {
+  color: #334155 !important;
+}
+
+.light .text-gray-400 {
+  color: #475569 !important;
+}
+
+.light .text-gray-500 {
+  color: #475569 !important;
+}
+
+.light .text-gray-600 {
+  color: #334155 !important;
+}
+
+.light .text-gray-700 {
+  color: #1e293b !important;
+}
+
+/* =========================================================
+   PURPLE TEXT
+   ========================================================= */
+
+.light .text-purple-50 {
+  color: #4c1d95 !important;
+}
+
+.light .text-purple-100 {
+  color: #4c1d95 !important;
+}
+
+.light .text-purple-200 {
+  color: #5b21b6 !important;
+}
+
+.light .text-purple-300 {
+  color: #6d28d9 !important;
+}
+
+.light .text-purple-400 {
+  color: #6d28d9 !important;
+}
+
+.light .text-purple-500 {
+  color: #6d28d9 !important;
+}
+
+.light .text-purple-600 {
+  color: #5b21b6 !important;
+}
+
+.light .text-purple-700 {
+  color: #4c1d95 !important;
+}
+
+.light .text-purple-800 {
+  color: #3b0764 !important;
+}
+
+.light .text-purple-900 {
+  color: #2e1065 !important;
+}
+
+/* =========================================================
+   VIOLET TEXT
+   ========================================================= */
+
+.light .text-violet-50 {
+  color: #4c1d95 !important;
+}
+
+.light .text-violet-100 {
+  color: #4c1d95 !important;
+}
+
+.light .text-violet-200 {
+  color: #5b21b6 !important;
+}
+
+.light .text-violet-300 {
+  color: #6d28d9 !important;
+}
+
+.light .text-violet-400 {
+  color: #6d28d9 !important;
+}
+
+.light .text-violet-500 {
+  color: #6d28d9 !important;
+}
+
+.light .text-violet-600 {
+  color: #5b21b6 !important;
+}
+
+.light .text-violet-700 {
+  color: #4c1d95 !important;
+}
+
+.light .text-violet-800 {
+  color: #3b0764 !important;
+}
+
+.light .text-violet-900 {
+  color: #2e1065 !important;
+}
+
+/* =========================================================
+   IMPORTANT:
+   FIX VERY PALE PURPLE / VIOLET TEXT EVEN IF COMPONENT
+   USES CUSTOM PURPLE CLASSES.
+   ========================================================= */
+
+html.light [class*="text-purple-"],
+html.light [class*="text-violet-"] {
+  color: #5b21b6 !important;
+}
+
+/* =========================================================
+   FIX PALE WHITE TEXT IN LIGHT THEME
+   ONLY FOR NORMAL TEXT ELEMENTS
+   ========================================================= */
+
+html.light p.text-white,
+html.light span.text-white,
+html.light label.text-white,
+html.light div.text-white {
+  color: #0f172a !important;
+}
+
+/* Keep white text on colored buttons */
+html.light button.text-white,
+html.light a.text-white {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   FIX LOW OPACITY TEXT
+   ========================================================= */
+
+html.light .text-opacity-50,
+html.light .text-opacity-60,
+html.light .text-opacity-70,
+html.light .text-opacity-75,
+html.light .text-opacity-80 {
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   GLASS PANELS
+   ========================================================= */
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 10px 30px rgba(30, 64, 175, 0.08),
+    0 4px 8px rgba(15, 23, 42, 0.04);
+
+  color: #0f172a;
+}
+
+.light .glass-panel-elevated {
+  background: rgba(255, 255, 255, 0.95);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(255, 255, 255, 1);
+
+  box-shadow:
+    0 16px 40px rgba(30, 64, 175, 0.12),
+    0 4px 12px rgba(15, 23, 42, 0.05);
+
+  color: #0f172a;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.light .glass-sidebar {
+  background: rgba(239, 246, 255, 0.96);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border-right: 1px solid rgba(147, 197, 253, 0.45);
+
+  box-shadow:
+    4px 0 25px rgba(30, 64, 175, 0.08);
+
+  color: #0f172a;
+}
+
+.light .glass-sidebar h1,
+.light .glass-sidebar h2,
+.light .glass-sidebar h3,
+.light .glass-sidebar h4,
+.light .glass-sidebar h5,
+.light .glass-sidebar h6 {
+  color: #0f172a !important;
+}
+
+.light .glass-sidebar p {
+  color: #334155;
+}
+
+.light .glass-sidebar .text-purple-50,
+.light .glass-sidebar .text-purple-100,
+.light .glass-sidebar .text-purple-200,
+.light .glass-sidebar .text-purple-300,
+.light .glass-sidebar .text-purple-400,
+.light .glass-sidebar .text-purple-500,
+.light .glass-sidebar .text-violet-50,
+.light .glass-sidebar .text-violet-100,
+.light .glass-sidebar .text-violet-200,
+.light .glass-sidebar .text-violet-300,
+.light .glass-sidebar .text-violet-400,
+.light .glass-sidebar .text-violet-500 {
+  color: #5b21b6 !important;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.light .glass-card,
+.light .card {
+  background: var(--card-bg);
+  color: #0f172a;
+
+  border: 1px solid rgba(147, 197, 253, 0.40);
+
+  box-shadow: var(--shadow-card);
+}
+
+.light .glass-card h1,
+.light .glass-card h2,
+.light .glass-card h3,
+.light .glass-card h4,
+.light .glass-card h5,
+.light .glass-card h6,
+.light .card h1,
+.light .card h2,
+.light .card h3,
+.light .card h4,
+.light .card h5,
+.light .card h6 {
+  color: #0f172a !important;
+}
+
+.light .glass-card p,
+.light .card p {
+  color: #334155 !important;
+}
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.glass-card-hover {
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-hover);
+
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.light .glass-input {
+  background: rgba(255, 255, 255, 0.97);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid #93c5fd;
+
+  color: #0f172a;
+
+  caret-color: #2563eb;
+}
+
+.light .glass-input::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.light .glass-input:focus {
+  outline: none;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12),
+    0 0 15px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================================================
+   SELECT / OPTION
+   ========================================================= */
+
+.light select {
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+.light select option {
+  color: #0f172a;
+  background: #ffffff;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.light button {
+  color: #0f172a;
+}
+
+.light button:hover {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.light button.bg-slate-900,
+.light button.bg-slate-800,
+.light button.bg-gray-900,
+.light button.bg-black,
+.light button.bg-blue-600,
+.light button.bg-blue-700,
+.light button.bg-indigo-600,
+.light button.bg-indigo-700,
+.light button.bg-purple-600,
+.light button.bg-purple-700,
+.light button.bg-violet-600,
+.light button.bg-violet-700 {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.light nav {
+  color: #1e293b;
+}
+
+.light nav a {
+  color: #334155;
+}
+
+.light nav a:hover {
+  color: #1d4ed8;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.light table {
+  color: #0f172a;
+}
+
+.light th {
+  color: #1e293b !important;
+  font-weight: 700;
+}
+
+.light td {
+  color: #334155 !important;
+}
+
+.light tr {
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.light a {
+  color: #2563eb;
+}
+
+.light a:hover {
+  color: #1d4ed8;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.light .badge {
+  font-weight: 700;
+}
+
+/* =========================================================
+   STATUS COLORS
+   ========================================================= */
+
+.text-status-success {
+  color: #059669 !important;
+}
+
+.text-status-warning {
+  color: #d97706 !important;
+}
+
+.text-status-danger {
+  color: #dc2626 !important;
+}
+
+.text-status-info {
+  color: #2563eb !important;
+}
+
+/* =========================================================
+   DIVIDERS
+   ========================================================= */
+
+.light hr {
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(191, 219, 254, 0.45);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.45);
+  border-radius: 9999px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.65);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(7, 17, 31, 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.35);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.55);
+}
+
+/* =========================================================
+   STRIPED BAR
+   ========================================================= */
+
+.striped-bar {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(37, 99, 235, 0.35),
+    rgba(37, 99, 235, 0.35) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* =========================================================
+   SOLID BAR
+   ========================================================= */
+
+.solid-bar {
+  background: linear-gradient(
+    180deg,
+    #3b82f6 0%,
+    #2563eb 100%
+  );
+
+  box-shadow:
+    0 0 12px rgba(37, 99, 235, 0.35);
+}
+
+/* =========================================================
+   BLUE FOCUS
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   DARK GLASS
+   ========================================================= */
+
+.dark .glass-panel {
+  background: rgba(15, 29, 50, 0.72);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(96, 165, 250, 0.18);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.30);
+
+  color: #f8fafc;
+}
+
+.dark .glass-panel-elevated {
+  background: rgba(20, 38, 65, 0.82);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45);
+
+  color: #f8fafc;
+}
+
+.dark .glass-sidebar {
+  background: rgba(7, 17, 31, 0.88);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border-right: 1px solid rgba(96, 165, 250, 0.15);
+
+  color: #f8fafc;
+}
+
+/* =========================================================
+   DARK INPUT
+   ========================================================= */
+
+.dark .glass-input {
+  background: rgba(15, 29, 50, 0.85);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(96, 165, 250, 0.25);
+
+  color: #f8fafc;
+}
+
+.dark .glass-input::placeholder {
+  color: #94a3b8;
+}
+
+.dark .glass-input:focus {
+  outline: none;
+
+  border-color: #60a5fa;
+
+  box-shadow:
+    0 0 0 3px rgba(96, 165, 250, 0.12),
+    0 0 15px rgba(59, 130, 246, 0.25);
+}
+
+/* =========================================================
+   DARK TEXT OVERRIDES
+   ========================================================= */
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f8fafc;
+}
+
+.dark p {
+  color: #cbd5e1;
+}
+
+.dark label {
+  color: #e2e8f0;
+}
+
+/* =========================================================
+   SMOOTH UI
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================================================
+   FINAL LIGHT-THEME VISIBILITY FIX
+   =========================================================
+   These are intentionally placed at the END so that they
+   override pale component-level Tailwind colors.
+   ========================================================= */
+
+/* Pale purple/violet text -> dark readable purple */
+html.light [class*="text-purple-"],
+html.light [class*="text-violet-"] {
+  color: #5b21b6 !important;
+}
+
+/* Pale blue text -> readable blue */
+html.light .text-blue-100,
+html.light .text-blue-200,
+html.light .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+
+/* Pale indigo text -> readable indigo */
+html.light .text-indigo-100,
+html.light .text-indigo-200,
+html.light .text-indigo-300 {
+  color: #3730a3 !important;
+}
+
+/* Pale pink text */
+html.light .text-pink-100,
+html.light .text-pink-200,
+html.light .text-pink-300 {
+  color: #9d174d !important;
+}
+
+/* Pale green text */
+html.light .text-green-100,
+html.light .text-green-200,
+html.light .text-green-300 {
+  color: #166534 !important;
+}
+
+/* Pale yellow/amber text */
+html.light .text-yellow-100,
+html.light .text-yellow-200,
+html.light .text-yellow-300,
+html.light .text-amber-100,
+html.light .text-amber-200,
+html.light .text-amber-300 {
+  color: #92400e !important;
+}
+
+/* Pale red text */
+html.light .text-red-100,
+html.light .text-red-200,
+html.light .text-red-300 {
+  color: #991b1b !important;
+}
+
+/* =========================================================
+   SPECIFIC CARD CONTENT READABILITY
+   ========================================================= */
+
+html.light .glass-card span,
+html.light .card span {
+  color: #334155;
+}
+
+html.light .glass-card .text-purple-200,
+html.light .glass-card .text-purple-300,
+html.light .glass-card .text-purple-400,
+html.light .glass-card .text-violet-200,
+html.light .glass-card .text-violet-300,
+html.light .glass-card .text-violet-400,
+html.light .card .text-purple-200,
+html.light .card .text-purple-300,
+html.light .card .text-purple-400,
+html.light .card .text-violet-200,
+html.light .card .text-violet-300,
+html.light .card .text-violet-400 {
+  color: #5b21b6 !important;
+}
+
+/* Contact names / email / project text */
+html.light .text-purple-100,
+html.light .text-purple-200,
+html.light .text-purple-300,
+html.light .text-violet-100,
+html.light .text-violet-200,
+html.light .text-violet-300 {
+  color: #5b21b6 !important;
+}
+
+/* =========================================================
+   DO NOT AFFECT DARK MODE
+   ========================================================= */
+
+/*
+   All readability fixes above are scoped to html.light.
+   Dark theme remains unchanged.
+*/

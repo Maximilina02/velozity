@@ -1,0 +1,135 @@
+// Prisma Schema for Velozity Real-Time Client Project Dashboard
+// Configured with SQLite for instant zero-dependency local runtime.
+// Production PostgreSQL schema is preserved in schema.postgresql.prisma and docker-compose.yml.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  password     String
+  name         String
+  role         String         @default("DEVELOPER") // "ADMIN" | "PROJECT_MANAGER" | "DEVELOPER"
+  avatarUrl    String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  // Relations
+  managedProjects Project[]   @relation("ManagerProjects")
+  assignedTasks   Task[]      @relation("AssignedTasks")
+  activities      ActivityLog[]
+  notifications   Notification[]
+  refreshTokens   RefreshToken[]
+
+  @@index([role])
+  @@index([email])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}
+
+model Client {
+  id        String    @id @default(uuid())
+  name      String
+  email     String
+  company   String
+  projects  Project[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Project {
+  id          String        @id @default(uuid())
+  name        String
+  description String?
+  clientId    String
+  client      Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  managerId   String
+  manager     User          @relation("ManagerProjects", fields: [managerId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+  activities  ActivityLog[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([managerId])
+  @@index([clientId])
+}
+
+model Task {
+  id           String        @id @default(uuid())
+  taskNumber   Int           @default(1)
+  title        String
+  description  String
+  status       String        @default("TODO") // "TODO" | "IN_PROGRESS" | "IN_REVIEW" | "DONE"
+  priority     String        @default("MEDIUM") // "LOW" | "MEDIUM" | "HIGH" | "CRITICAL"
+  dueDate      DateTime
+  isOverdue    Boolean       @default(false)
+  projectId    String
+  project      Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  assignedToId String?
+  assignedTo   User?         @relation("AssignedTasks", fields: [assignedToId], references: [id], onDelete: SetNull)
+  activities   ActivityLog[]
+  notifications Notification[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([projectId])
+  @@index([assignedToId])
+  @@index([status])
+  @@index([priority])
+  @@index([dueDate])
+  @@index([isOverdue])
+}
+
+model ActivityLog {
+  id         String      @id @default(uuid())
+  action     String      // e.g. "STATUS_CHANGE", "TASK_CREATED", "TASK_ASSIGNED", "TASK_OVERDUE"
+  details    String      // formatted text: "Ravi moved Task #12 from In Progress → In Review"
+  prevStatus String?
+  newStatus  String?
+  taskId     String?
+  task       Task?       @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  projectId  String
+  project    Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime    @default(now())
+
+  @@index([projectId, createdAt(sort: Desc)])
+  @@index([taskId])
+  @@index([userId])
+  @@index([createdAt(sort: Desc)])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   // "TASK_ASSIGNED" | "TASK_IN_REVIEW" | "TASK_OVERDUE"
+  isRead    Boolean  @default(false)
+  taskId    String?
+  task      Task?    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId, isRead])
+  @@index([createdAt(sort: Desc)])
+}
