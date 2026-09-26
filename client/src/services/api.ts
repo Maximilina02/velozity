@@ -8,7 +8,7 @@ export const setAccessToken = (token: string | null) => {
 
 export const getAccessToken = () => inMemoryAccessToken;
 
-const BASE_URL = '/api';
+const BASE_URL = 'https://z-e1al.onrender.com/api';
 
 interface RequestOptions extends RequestInit {
   skipAuthRefresh?: boolean;
